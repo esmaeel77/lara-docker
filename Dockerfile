@@ -7,7 +7,7 @@ RUN yum -y install yum-utils
 RUN yum-config-manager --enable remi-php72
 RUN yum update -y
 
-RUN yum install -yqq \
+RUN yum -y install \
     gcc-c++ \
     make \
     git \
@@ -23,7 +23,7 @@ RUN yum install -yqq \
     unixODBC \
     libtidy
 
-RUN yum install -y \
+RUN yum -y install \
     php \
     php-mbstring \
     php-intl \
@@ -37,11 +37,6 @@ RUN yum install -y \
     php-bcmath \
     php-mongodb \
     php-geos
-
-RUN curl -sL https://rpm.nodesource.com/setup_8.x | bash -
-RUN curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
-RUN yum install nodejs
-RUN yum install yarn
 
 
 RUN printf "display_errors=Off\nmax_execution_time=30\nmax_input_time=60\nmax_input_vars=1000\nmemory_limit=1280M\npost_max_size=8M\nupload_max_filesize=2M\nprecision=14\nserialize_precision=14" >> /etc/php.ini
