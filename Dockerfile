@@ -38,10 +38,10 @@ RUN yum install -y \
     php-mongodb \
     php-geos
 
-curl -sL https://rpm.nodesource.com/setup_8.x | bash -
-curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
-yum install nodejs
-yum install yarn
+RUN curl -sL https://rpm.nodesource.com/setup_8.x | bash -
+RUN curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
+RUN yum install nodejs
+RUN yum install yarn
 
 
 RUN printf "display_errors=Off\nmax_execution_time=30\nmax_input_time=60\nmax_input_vars=1000\nmemory_limit=1280M\npost_max_size=8M\nupload_max_filesize=2M\nprecision=14\nserialize_precision=14" >> /etc/php.ini
