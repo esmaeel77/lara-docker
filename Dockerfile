@@ -8,6 +8,8 @@ RUN yum-config-manager --enable remi-php72
 RUN yum update -y
 
 RUN yum install -yqq \
+    gcc-c++ \
+    make \
     git \
     mysql \
     gnupg2 \
@@ -21,8 +23,7 @@ RUN yum install -yqq \
     unixODBC \
     libtidy
 
-
-RUN yum install -y
+RUN yum install -y \
     php \
     php-mbstring \
     php-intl \
@@ -36,6 +37,11 @@ RUN yum install -y
     php-bcmath \
     php-mongodb \
     php-geos
+
+curl -sL https://rpm.nodesource.com/setup_8.x | bash -
+curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
+yum install nodejs
+yum install yarn
 
 
 RUN printf "display_errors=Off\nmax_execution_time=30\nmax_input_time=60\nmax_input_vars=1000\nmemory_limit=1280M\npost_max_size=8M\nupload_max_filesize=2M\nprecision=14\nserialize_precision=14" >> /etc/php.ini
@@ -51,3 +57,10 @@ RUN php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) \
     !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); \
     echo 'Invalid installer' . PHP_EOL; exit(1); }"
 RUN php /tmp/composer-setup.php --filename=composer --install-dir=$COMPOSER_HOME
+
+
+RUN curl -sL https://rpm.nodesource.com/setup_8.x | bash -
+RUN curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
+RUN yum -y install
+    nodejs \
+    yarn
