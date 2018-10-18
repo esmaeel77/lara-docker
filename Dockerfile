@@ -45,7 +45,7 @@ ENV COMPOSER_HOME /usr/local/share/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV PATH "$COMPOSER_HOME:$COMPOSER_HOME/vendor/bin:$PATH"
 RUN mkdir -pv $COMPOSER_HOME
-RUN chmod -R g+w $COMPOSER_HOME \
+RUN chmod -R g+w $COMPOSER_HOME
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer
 RUN curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig
 RUN php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) \
