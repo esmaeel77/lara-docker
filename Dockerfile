@@ -21,6 +21,7 @@ RUN yum -y install \
     libpng \
     libXpm \
     unixODBC \
+    which \
     libtidy
 
 RUN yum -y install \
