@@ -55,6 +55,7 @@ RUN php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) \
     echo 'Invalid installer' . PHP_EOL; exit(1); }"
 RUN php /tmp/composer-setup.php --filename=composer --install-dir=$COMPOSER_HOME
 
+RUN composer global require laravel/envoy
 
 RUN curl -sL https://rpm.nodesource.com/setup_8.x | bash -
 RUN curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
